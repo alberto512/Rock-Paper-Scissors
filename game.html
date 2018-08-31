@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" media="all" href="style.css">
+  </head>
+  <body>
+    <div id="buttons">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </div>
+    <div id=clashPlayer>
+    </div>
+    <div id="clashComputer">
+    </div>
+    <div id="result">
+    </div>
+    <h3 id="player">Player</h3>
+    <div id="playerResult">
+      0
+    </div>
+    <h3 id="computer">Computer</h3>
+    <div id="computerResult">
+      0
+    </div>
+    <h1 id="finalResult">
+    </h1>
+    <div id="reload">
+      <button onclick="location.reload()">Play again</button>
+    </div>
+    <script>
+
+      let playerSelection;
+
+      let option = ["rock", "paper", "scissors"]
+      function computerPlay(){
+        var randomNumber = Math.floor(Math.random()*option.length);
+        return option[randomNumber];
+      }
+
+      function win(){
+        result.textContent="You win, " + playerSelection + " defeat " + computerSelection;
+        i++;
+        playerResult.textContent=i;
+      };
+      function tie(){
+        result.textContent="You are in a tie, " + playerSelection + " is the same as " + computerSelection;
+      };
+      function lose(){
+        result.textContent="You lose, " + playerSelection + " gets deafeated by " + computerSelection;
+        j++;
+        computerResult.textContent=j;
+      };
+
+      function playRound(playerSelection,computerSelection){
+
+        if(playerSelection=="rock" && computerSelection=="rock"){
+          clashPlayer.innerHTML = rock;
+          clashComputer.innerHTML = rock;
+          tie();
+        }else if(playerSelection=="rock" && computerSelection=="paper"){
+          clashPlayer.innerHTML = rock;
+          clashComputer.innerHTML = paper;
+          lose();
+        }else if(playerSelection=="rock" && computerSelection=="scissors"){
+          clashPlayer.innerHTML = rock;
+          clashComputer.innerHTML = scisssors;
+          win();
+        }else if(playerSelection=="paper" && computerSelection=="rock"){
+          clashPlayer.innerHTML = paper;
+          clashComputer.innerHTML = rock;
+          win();
+        }else if(playerSelection=="paper" && computerSelection=="paper"){
+          clashPlayer.innerHTML = paper;
+          clashComputer.innerHTML = paper;
+          tie();
+        }else if(playerSelection=="paper" && computerSelection=="scissors"){
+          clashPlayer.innerHTML = paper;
+          clashComputer.innerHTML = scissors;
+          lose();
+        }else if(playerSelection=="scissors" && computerSelection=="rock"){
+          clashPlayer.innerHTML = scissors;
+          clashComputer.innerHTML = rock;
+          lose();
+        }else if(playerSelection=="scissors" && computerSelection=="paper"){
+          clashPlayer.innerHTML = scissors;
+          clashComputer.innerHTML = paper;
+          win();
+        }else if(playerSelection=="scissors" && computerSelection=="scissors"){
+          clashPlayer.innerHTML = scissors;
+          clashComputer.innerHTML = scissors;
+          tie();
+        }
+      }
+
+      let computerSelection ;
+
+      const clashPlayer = document.querySelector("#clashPlayer");
+      const clashComputer = document.querySelector("#clashComputer");
+      const result = document.querySelector("#result");
+      const playerResult = document.querySelector("#playerResult");
+      const computerResult = document.querySelector("#computerResult");
+      const containerButtons = document.querySelector("#buttons");
+      const finalResult = document.querySelector("#finalResult");
+      const repeatButton = document.querySelector("#reload");
+
+      repeatButton.style.visibility = "hidden";
+
+      let i=0;
+      let j=0;
+      let rock = "<img src='images/rock.jpg'></img>";
+      let paper = "<img src='images/paper.jpg'></img>";
+      let scissors = "<img src='images/scissors.jpg'></img>";
+
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          playerSelection=button.id;
+          computerSelection = computerPlay();
+          playRound(playerSelection, computerSelection);
+          if(i==5){
+            containerButtons.textContent = "Game finished";
+            finalResult.textContent = "Victory";
+            repeatButton.style.visibility = "visible";
+          }else if(j==5){
+            containerButtons.textContent = "Game finished";
+            finalResult.textContent = "Defeat";
+            repeatButton.style.visibility = "visible";
+          };
+        });
+      });
+    </script>
+  </body>
+</html>
