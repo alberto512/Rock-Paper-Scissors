@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <script>
+      let option = ["rock", "paper", "scissors"]
+      function computerPlay(){
+        var randomNumber = Math.floor(Math.random()*option.length);
+        return option[randomNumber];
+      }
+
+      function playRound(playerSelection,computerSelection){
+        let win=("You win, " + playerSelection + " defeat " + computerSelection);
+        let tie=("You are in a tie, " + playerSelection + " is the same as " +
+         computerSelection);
+        let lose=("You lose, " + playerSelection + " gets deafeated against " +
+         computerSelection);
+        playerSelection = playerSelection.toLowerCase();
+        if(playerSelection=="rock" && computerSelection=="rock"){
+          alert(tie);
+        }else if(playerSelection=="rock" && computerSelection=="paper"){
+          alert(lose);
+        }else if(playerSelection=="rock" && computerSelection=="scissors"){
+          alert(win);
+        }else if(playerSelection=="paper" && computerSelection=="rock"){
+          alert(win);
+        }else if(playerSelection=="paper" && computerSelection=="paper"){
+          alert(tie);
+        }else if(playerSelection=="paper" && computerSelection=="scissors"){
+          alert(lose);
+        }else if(playerSelection=="scissors" && computerSelection=="rock"){
+          alert(lose);
+        }else if(playerSelection=="scissors" && computerSelection=="paper"){
+          alert(win);
+        }else if(playerSelection=="scissors" && computerSelection=="scissors"){
+          alert(tie);
+        }else{
+          alert("Introduce a valid word");
+        }
+      }
+
+      let sign=window.prompt("Rock, scissors or paper?");
+      let playerSelection=sign;
+      let computerSelection= computerPlay();
+      console.log(playRound(playerSelection, computerSelection))
+    </script>
+  </body>
+</html>
