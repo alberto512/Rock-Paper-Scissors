@@ -1,49 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style type="text/css">
+      *{
+        overflow: hidden;
+        background-color: rgb(77, 0, 25);
+        color: white;
+        font-family: Arial;
+      }
+
+      button{
+        width:100px;
+        height:100px;
+        background-position:center;
+        background-color: grey;
+        color: white;
+        font-size: 20px;
+        border-color: black;
+      }
+
+      #button{
+        text-align: center;
+        position: absolute;
+        box-sizing: border-box;
+        width: 100%;
+        top: 400px;
+      }
+
+      h1{
+        box-sizing: border-box;
+        text-align: center;
+        width: 100%;
+        font-size: 100px;
+      }
+
+      h4{
+        box-sizing: border-box;
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+      }
+
+    </style>
   </head>
   <body>
-    <script>
-      let option = ["rock", "paper", "scissors"]
-      function computerPlay(){
-        var randomNumber = Math.floor(Math.random()*option.length);
-        return option[randomNumber];
-      }
-
-      function playRound(playerSelection,computerSelection){
-        let win=("You win, " + playerSelection + " defeat " + computerSelection);
-        let tie=("You are in a tie, " + playerSelection + " is the same as " +
-         computerSelection);
-        let lose=("You lose, " + playerSelection + " gets deafeated against " +
-         computerSelection);
-        playerSelection = playerSelection.toLowerCase();
-        if(playerSelection=="rock" && computerSelection=="rock"){
-          alert(tie);
-        }else if(playerSelection=="rock" && computerSelection=="paper"){
-          alert(lose);
-        }else if(playerSelection=="rock" && computerSelection=="scissors"){
-          alert(win);
-        }else if(playerSelection=="paper" && computerSelection=="rock"){
-          alert(win);
-        }else if(playerSelection=="paper" && computerSelection=="paper"){
-          alert(tie);
-        }else if(playerSelection=="paper" && computerSelection=="scissors"){
-          alert(lose);
-        }else if(playerSelection=="scissors" && computerSelection=="rock"){
-          alert(lose);
-        }else if(playerSelection=="scissors" && computerSelection=="paper"){
-          alert(win);
-        }else if(playerSelection=="scissors" && computerSelection=="scissors"){
-          alert(tie);
-        }else{
-          alert("Introduce a valid word");
-        }
-      }
-
-      let sign=window.prompt("Rock, scissors or paper?");
-      let playerSelection=sign;
-      let computerSelection= computerPlay();
-      console.log(playRound(playerSelection, computerSelection))
-    </script>
+    <h1 id="title">
+      Rock-Paper-Scissors
+    </h1>
+    <h4>
+      Play again the computer
+    </h4>
+    <h4>
+      The first who reaches 5 points will win
+    </h4>
+    <div id="button">
+    <button onclick="location.href='game.html'">Play</button>
   </body>
 </html>
